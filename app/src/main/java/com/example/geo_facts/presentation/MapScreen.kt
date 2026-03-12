@@ -7,48 +7,62 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.geo_facts.domain.MapCanvas
-
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MapScreen(viewModel: MainViewModel) {
 
-    val selectedState by viewModel.selectedState.collectAsState()
-    val fact by viewModel.currentFact.collectAsState()
+    val states by viewModel.states.collectAsStateWithLifecycle()
+    val selectedState by viewModel.selectedState.collectAsStateWithLifecycle()
+    val fact by viewModel.currentFact.collectAsStateWithLifecycle()
 
     val sheetState = rememberModalBottomSheetState()
 
-    if (selectedState != null) {
-        ModalBottomSheet(
-            onDismissRequest = {},
-            sheetState = sheetState
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(24.dp)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .statusBarsPadding()
+    ) {
+
+        MapCanvas(
+            states = states,
+            onStateClick = { viewModel.selectState(it) }
+        )
+
+        selectedState?.let { state ->
+
+            ModalBottomSheet(
+                onDismissRequest = { viewModel.clearSelection() },
+                sheetState = sheetState
             ) {
-                Text(
-                    text = selectedState!!.name,
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
-                )
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(20.dp)
+                ) {
 
-                Text(text = fact)
+                    Text(
+                        text = state.name,
+                        style = MaterialTheme.typography.titleLarge
+                    )
 
-                Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
-                Button(onClick = { viewModel.generateRandomFact() }) {
-                    Text("Generate Another Fact")
+                    Text(text = fact)
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Button(
+                        onClick = { viewModel.generateRandomFact() },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Generate Another Fact")
+                    }
+
+                    Spacer(modifier = Modifier.height(20.dp))
                 }
             }
         }
     }
-
-    MapCanvas(
-        states = viewModel.states,
-        selectedState = selectedState,
-        onStateSelected = { viewModel.onStateSelected(it) }
-    )
 }
