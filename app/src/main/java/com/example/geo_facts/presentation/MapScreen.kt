@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.example.geo_facts.domain.MapCanvas
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.geo_facts.domain.MapCanvas2
+import com.example.geo_facts.domain.MapCanvas2v2
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,10 +30,10 @@ fun MapScreen(viewModel: MainViewModel) {
             .statusBarsPadding()
     ) {
 
-        MapCanvas(
+        MapCanvas (
             modifier = Modifier
                 .fillMaxWidth(.9f)
-                .fillMaxHeight(.5f)
+                .fillMaxHeight(.7f)
                 .align(Alignment.TopCenter),
             states = states,
             onStateClick = { viewModel.selectState(it) }
