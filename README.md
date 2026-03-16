@@ -9,8 +9,8 @@ The project demonstrates how to build a **high-performance, fully interactive ma
 # 📸 Screenshots
 
 <p align="center">
-  <img src="app/src/main/res/raw/ss_geo_facts.gif" widht="200" alt="My Screenshot">
-</p>  
+  <img src="app/src/main/res/raw/ss_geo_facts.gif" width="25%" alt="My Screenshot">
+</p>
 
 ---
 
@@ -23,11 +23,6 @@ The project demonstrates how to build a **high-performance, fully interactive ma
 * ⚡ Optimized rendering using **Jetpack Compose Canvas**
 * 📱 Fully built with **Jetpack Compose**
 
----
-
-# 🎥 Demo
-
-![demo](screenshots/demo.gif)
 
 ---
 
