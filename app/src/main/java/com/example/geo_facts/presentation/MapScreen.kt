@@ -1,13 +1,18 @@
 package com.example.geo_facts.presentation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.geo_facts.domain.MapCanvas
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.geo_facts.domain.MapCanvas2
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MapScreen(viewModel: MainViewModel) {
@@ -25,6 +30,10 @@ fun MapScreen(viewModel: MainViewModel) {
     ) {
 
         MapCanvas(
+            modifier = Modifier
+                .fillMaxWidth(.9f)
+                .fillMaxHeight(.5f)
+                .align(Alignment.TopCenter),
             states = states,
             onStateClick = { viewModel.selectState(it) }
         )
