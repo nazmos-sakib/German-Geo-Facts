@@ -8,9 +8,9 @@ The project demonstrates how to build a **high-performance, fully interactive ma
 
 # 📸 Screenshots
 
-| Map View                                      | 
-| --------------------------------------------- | 
-| ![map](app/src/main/res/raw/ss_geo_facts.gif) | 
+<p align="center">
+  <img src="app/src/main/res/raw/ss_geo_facts.gif" widht="200" alt="My Screenshot">
+</p>  
 
 ---
 
